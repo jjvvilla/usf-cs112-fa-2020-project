@@ -1,0 +1,61 @@
+package project1;
+import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JFrame;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Driver {
+	public static void main(String arg[]) {
+	SwingUtilities.invokeLater(
+		new Runnable() { public void run() { initAndShowGUI(); } }        
+		);
+	}
+  
+	private static void initAndShowGUI() {
+		JFrame mainFrame = new JFrame("Accuracy and Percision of Dummy Model");
+		mainFrame.setVisible(true);
+		mainFrame.setBounds(300,200,700,400);
+			
+		Random ranData= new Random();
+
+		ArrayList<DataPoint> trainData = new ArrayList<>();
+		public DataPoint(double f1, double f2, String label, String type){
+		for (int x=0; x<7; x++) {
+			double f1 = ranData.nextDouble();
+			double f2 = ranData.nextDouble();
+			String label = "label: "+x;
+			String type = "type: "+x;
+			DataPoint tempData = new DataPoint(f1,f2,label,type);
+			trainData.add(tempData);
+		}
+
+		ArrayList<DataPoint> testData = new ArrayList<>();
+		for (int x=0; x<7; x++) {
+			double f1 = x+3.6;
+			double f2 = x+6.9;
+			String label = "label: "+x;
+			String type = "type: "+x;
+			DataPoint tempPoint = new DataPoint(f1, f2, label,type);
+			testData.add(tempPoint);
+		}
+    
+    public void train(ArrayList<DataPoint> data){
+    }
+    
+		public String test(ArrayList<DataPoint> data){
+    }
+    
+		
+		JLabel textOne = new JLabel(label1);
+		JLabel textTwo = new JLabel(label2);
+		Container contentPane = mainFrame.getContentPane();
+		contentPane.setLayout(new GridLayout(2,2));
+		mainFrame.getContentPane().add(myText1, BorderLayout.CENTER);
+		mainFrame.getContentPane().add(myText2, BorderLayout.CENTER);	
+	}
+		}
