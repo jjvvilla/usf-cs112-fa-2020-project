@@ -1,0 +1,53 @@
+package project1;
+import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Driver {
+	public static void main(String arg[]) {
+	SwingUtilities.invokeLater(
+		new Runnable() { public void run() { initAndShowGUI(); } }        
+		);
+	}
+  
+	private static void initAndShowGUI() {
+		JFrame frameBase = new JFrame("Accuracy and Percision of Dummy Model");
+		frameBase.setVisible(true);
+		frameBase.setBounds(300,200,700,400);
+			
+		ArrayList<DataPoint> trainingData = new ArrayList<>();
+		for (int x=0; x<7; x++) {
+      trainingData(x).setF1(Math.random()*10);
+      trainingData(x).setF2(Math.random()*15);
+		}
+    
+		ArrayList<DataPoint> testData = new ArrayList<>();
+		for (int x=0; x<7; x++) {
+      testData(x).setF1(Math.random()*10);
+      testData(x).setF2(Math.random()*15);
+		}
+		
+		DummyModel dumModel = new DummyModel();
+		dumModel.train(trainingData);
+		System.out.println("test: "+ dumModel.test(testData));
+			
+		double Accuracy = dumModel.getAccuracy(trainingData);
+		String label1 = "Accuracy: "+Accuracy;
+		System.out.println(label1);
+
+		double Precision = dModel.getPrecision(trainingData);
+		String label2 = "Precision: "+ Precision;
+		
+		JLabel myText1 = new JLabel(label1);
+		JLabel myText2 = new JLabel(label2);
+		Container contentPane = myFrame.getContentPane();
+		contentPane.setLayout(new GridLayout(2,2));
+		myFrame.getContentPane().add(myText1, BorderLayout.CENTER);
+		myFrame.getContentPane().add(myText2, BorderLayout.CENTER);	
+	}
+		}
