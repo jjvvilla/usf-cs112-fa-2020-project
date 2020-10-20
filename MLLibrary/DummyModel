@@ -1,6 +1,6 @@
 package project1;
 
-public class DummyModel {
+public class DummyModel extends Model{
 
    	 public void train(ArrayList<DataPoint> data){
 	 for(int x=0; x<data.size(); x++){
