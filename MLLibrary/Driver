@@ -24,17 +24,26 @@ public class Driver {
 		for (int x=0; x<7; x++) {
       trainingData(x).setF1(Math.random()*10);
       trainingData(x).setF2(Math.random()*15);
+      System.out.println(trainingData(x).toString());
 		}
     
 		ArrayList<DataPoint> testData = new ArrayList<>();
 		for (int x=0; x<7; x++) {
       testData(x).setF1(Math.random()*10);
       testData(x).setF2(Math.random()*15);
+      System.out.println(testData(x).toString());
 		}
 		
 		DummyModel dumModel = new DummyModel();
 		dumModel.train(trainingData);
-		System.out.println("test: "+ dumModel.test(testData));
+		for(int x=0; x<trainingData.size();x++){
+			System.out.println(trainingData(x).toString());
+		}
+		
+		dumModel.test(testData)
+		for(int x=0; x<testData.size();x++){
+			System.out.println(testData(x).toString());
+		}
 			
 		double Accuracy = dumModel.getAccuracy(trainingData);
 		String label1 = "Accuracy: "+Accuracy;
