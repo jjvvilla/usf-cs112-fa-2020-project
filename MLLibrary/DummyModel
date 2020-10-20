@@ -1,61 +1,45 @@
 package project1;
-import javax.swing.*;
-import javax.swing.JLabel;
-import javax.swing.JFrame;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.util.Random;
+public class DummyModel {
 
-public class Driver {
-	public static void main(String arg[]) {
-	SwingUtilities.invokeLater(
-		new Runnable() { public void run() { initAndShowGUI(); } }        
-		);
+   	 public void train(ArrayList<DataPoint> data){
+	 for(int x=0; x<data.size(); x++){
+	 	data(x).setF1(data(x).getF1()*2);
+		data(x).setF2(data(x).getF2()/2);
+	 }
+    }
+    
+	public String test(ArrayList<DataPoint> data){
+	for(int x=0; x<data.size(); x++){
+		return data(x).toString();
 	}
-  
-	private static void initAndShowGUI() {
-		JFrame mainFrame = new JFrame("Accuracy and Percision of Dummy Model");
-		mainFrame.setVisible(true);
-		mainFrame.setBounds(300,200,700,400);
-			
-		Random ranData= new Random();
-
-		ArrayList<DataPoint> trainData = new ArrayList<>();
-		public DataPoint(double f1, double f2, String label, String type){
-		for (int x=0; x<7; x++) {
-			double f1 = ranData.nextDouble();
-			double f2 = ranData.nextDouble();
-			String label = "label: "+x;
-			String type = "type: "+x;
-			DataPoint tempData = new DataPoint(f1,f2,label,type);
-			trainData.add(tempData);
-		}
-
-		ArrayList<DataPoint> testData = new ArrayList<>();
-		for (int x=0; x<7; x++) {
-			double f1 = x+3.6;
-			double f2 = x+6.9;
-			String label = "label: "+x;
-			String type = "type: "+x;
-			DataPoint tempPoint = new DataPoint(f1, f2, label,type);
-			testData.add(tempPoint);
-		}
-    
-    public void train(ArrayList<DataPoint> data){
     }
     
-		public String test(ArrayList<DataPoint> data){
-    }
-    
+    	public double getAccuracy(ArrayList<DataPoint> data){
+		public double avg = 0;
+		public double avgAll = 0;
+		for(int x=0; x<data.size(); x++){
+			avg = (data(x).getF1() + data(x).getF2())/2;
+			avgAll += avg;
+		}
+		avgAll /= data.size();
+		return avgAll;
+	}
+	
+	public double getPrecision(ArrayList<DataPoint> data){
+		public double biggestDif = 0;
+		public double dif
+		for(int x=0; x<data.size(); x++){
+			if(data(x).getF1() > data(x).getF2()){
+				dif = data(x).getF1() - data(x).getF2());
+			} else {
+				dif = data(x).getF2() - data(x).getF2));
+			}
+			if(dif > biggestDif){
+			biggestDif = dif;
+			}
+		}
+		return biggestDif;
+	}
 		
-		JLabel textOne = new JLabel(label1);
-		JLabel textTwo = new JLabel(label2);
-		Container contentPane = mainFrame.getContentPane();
-		contentPane.setLayout(new GridLayout(2,2));
-		mainFrame.getContentPane().add(myText1, BorderLayout.CENTER);
-		mainFrame.getContentPane().add(myText2, BorderLayout.CENTER);	
-	}
-		}
+}
